@@ -17,3 +17,6 @@
 
 # Ignore all idea/ruby mine directories.
 /.idea
+
+# Ignore environment file
+/.env
