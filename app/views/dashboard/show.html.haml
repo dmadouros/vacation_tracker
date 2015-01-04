@@ -1,0 +1,20 @@
+.row
+  %h1 My Dashboard
+
+.row
+  .large-12.columns.employee-header
+    .row
+      .large-2.columns
+        %span.employee-header-label
+          Hire Date:
+      .large-2.columns
+        %span.hired_on
+          = current_user.hired_on.to_s(:concise)
+      .large-5.columns
+        %span.employee-header-label
+          Available PTO Hours (as of
+          = DateTime.current.to_s(:concise)
+          ):
+      .large-1.columns.end.right
+        %span.pto_hours_available
+          = format("%.2f", current_user.pto_hours_available)
