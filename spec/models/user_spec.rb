@@ -17,4 +17,15 @@ RSpec.describe User, :type => :model do
       expect(user).to_not have_profile
     end
   end
+
+  describe 'hired_on' do
+    it 'should be the hired_on date from the profile if profile present' do
+      hired_on = '11/11/2013'
+      user = User.new
+      profile = Profile.new(hired_on: hired_on)
+      user.profile = profile
+
+      expect(user.hired_on).to eq hired_on
+    end
+  end
 end

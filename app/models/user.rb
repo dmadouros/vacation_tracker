@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :profile
+  delegate :hired_on, to: :profile
 
   def has_profile?
     profile.present?

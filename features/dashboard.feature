@@ -13,3 +13,10 @@ Feature: View My Dashboard
     But I have logged in before
     When I login
     Then I should be shown my dashboard
+
+  Scenario: I visit my dashboard
+    Given I have an account
+    And I have logged in before
+    And I am logged in
+    When I visit my dashboard
+    Then I should see my hire date

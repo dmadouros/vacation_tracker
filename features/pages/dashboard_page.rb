@@ -10,4 +10,8 @@ class DashboardPage < PageObject
   def dashboard_page?
     driver.has_css?('h1', text: 'My Dashboard')
   end
+
+  def hired_on
+    driver.first('.hired_on').try(:text)
+  end
 end

@@ -1,1 +1,8 @@
 <h1>My Dashboard</h1>
+
+<div>
+  Hire Date:
+</div>
+<div class="hired_on">
+  <%= current_user.hired_on.to_s(:concise) %>
+</div>

@@ -12,11 +12,16 @@ Given(/^I have logged in before$/) do
   @user.save!
 end
 
-When(/^I login$/) do
+Given(/^I have never logged in before$/) do
+  @user.profile.destroy if @user.profile.present?
+end
+
+Given(/^I am logged in$/) do
   application.login_page.open
   application.login_with_credentials(email: 'test_user@example.com', password: 'password')
 end
 
-Given(/^I have never logged in before$/) do
-  @user.profile.destroy if @user.profile.present?
+When(/^I login$/) do
+  application.login_page.open
+  application.login_with_credentials(email: 'test_user@example.com', password: 'password')
 end
