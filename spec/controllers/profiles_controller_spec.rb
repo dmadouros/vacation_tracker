@@ -5,6 +5,11 @@ RSpec.describe ProfilesController, :type => :controller do
 
   before { sign_in user }
 
+  it_should_behave_like 'an authenticating controller' do
+    let(:controller_action) { :new }
+    before { sign_out user }
+  end
+
   describe '#new' do
 
     context 'when user does not have a profile' do

@@ -15,3 +15,10 @@ Feature: Create profile
     When I try to create a profile
     Then I should be shown my dashboard
     And I should be shown a warning message
+
+  Scenario: I visit the create profile page when not logged in
+    Given I have an account
+    And I have never logged in before
+    And I am not logged in
+    When I try to create a profile
+    Then I should be asked for my authentication credentials
