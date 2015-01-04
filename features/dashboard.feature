@@ -20,3 +20,4 @@ Feature: View My Dashboard
     And I am logged in
     When I visit my dashboard
     Then I should see my hire date
+    And I should see my available pto hours

@@ -6,3 +6,9 @@
 <div class="hired_on">
   <%= current_user.hired_on.to_s(:concise) %>
 </div>
+<div>
+  Available PTO Hours (as of <%= DateTime.current.to_s(:concise) %>):
+</div>
+<div class="pto_hours_available">
+  <%= format("%.2f", current_user.pto_hours_available) %>
+</div>

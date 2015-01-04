@@ -19,6 +19,7 @@ gem 'pg'
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'timecop'
 end
 
 group :development, :test do

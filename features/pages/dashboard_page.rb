@@ -14,4 +14,8 @@ class DashboardPage < PageObject
   def hired_on
     driver.first('.hired_on').try(:text)
   end
+
+  def pto_hours_available
+    driver.first('.pto_hours_available').try(:text)
+  end
 end
