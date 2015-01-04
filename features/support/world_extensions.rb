@@ -5,3 +5,4 @@ module TheApplication
 end
 
 World(TheApplication)
+World(FactoryGirl::Syntax::Methods)

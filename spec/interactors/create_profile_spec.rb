@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CreateProfile do
   describe '#call' do
-    let(:user) { User.create!(email: 'test@example.com', password: 'password') }
+    let(:user) { create(:user, profile: nil) }
     let(:interactor) { CreateProfile.new(current_user: user, profile_params: profile_params) }
     let(:context) { interactor.context }
 

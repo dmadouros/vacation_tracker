@@ -1,13 +1,13 @@
 Given(/^I have an account$/) do
   email = 'test_user@example.com'
   password = 'password'
-  @user = User.create!(email: email, password: password)
+  @user = create(:user, email: email, password: password, profile: nil)
 end
 
 Given(/^I am not logged in$/) do; end
 
 Given(/^I have logged in before$/) do
-  profile = Profile.create!(hired_on: '11/11/2013', pto_hours_used: 72)
+  profile = create(:profile, hired_on: '11/11/2013', pto_hours_used: 72)
   @user.profile = profile
   @user.save!
 end

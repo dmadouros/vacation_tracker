@@ -3,7 +3,8 @@ require 'rails_helper'
 describe PtoCalculator do
 
   let(:hired_on) { DateTime.parse('2013-11-11') }
-  let(:employee) { User.new(profile: Profile.new(hired_on: hired_on, pto_hours_used: 0)) }
+  let(:profile) { build(:profile, hired_on: hired_on, pto_hours_used: 0)}
+  let(:employee) { build(:user, profile: profile) }
   subject { PtoCalculator.instance(employee) }
 
   describe '#accrued_hours' do

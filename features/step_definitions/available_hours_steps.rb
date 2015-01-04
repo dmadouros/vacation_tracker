@@ -1,6 +1,6 @@
 Given(/^my I was hired on (.*)$/) do |hired_on|
-  profile = Profile.new(hired_on: DateTime.parse(hired_on), pto_hours_used: 0)
-  @employee = User.new(profile: profile)
+  profile = build(:profile, hired_on: DateTime.parse(hired_on), pto_hours_used: 0)
+  @employee = build(:user, profile: profile)
 end
 
 Given(/^today is (.*)$/) do |current_date|

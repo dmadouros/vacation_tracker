@@ -51,7 +51,7 @@ RSpec.describe ProfilesController, :type => :controller do
 
   describe '#create' do
 
-    let(:user) { User.create!(email: 'test@example.com', password: 'password') }
+    let(:user) { create(:user, profile: nil) }
     let(:params) do
       params = {
         profile: {
@@ -83,7 +83,7 @@ RSpec.describe ProfilesController, :type => :controller do
     end
 
     context 'when not successful' do
-      let(:profile) { Profile.new }
+      let(:profile) { build(:profile) }
       let(:context) { double(:context, success?: false, profile: profile) }
 
       it 'should assign the profile' do

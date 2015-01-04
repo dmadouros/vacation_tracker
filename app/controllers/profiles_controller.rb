@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
       flash[:warning] = "A profile already exists for #{current_user.email}."
       redirect_to dashboard_url
     else
-      @profile = Profile.new(pto_hours_used: 0)
+      @profile = Profile.new(hired_on: Date.today, pto_hours_used: 0)
       render :new
     end
   end

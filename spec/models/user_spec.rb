@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
-  let(:profile) { Profile.new }
-  subject { User.new(profile: profile) }
+  let(:profile) { build(:profile) }
+  subject { build(:user, profile: profile) }
 
   describe '#has_profile?' do
     it 'should be true when the user has a profile' do
