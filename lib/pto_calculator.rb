@@ -11,6 +11,18 @@ class PtoCalculator
   end
 
   def available_hours
+    local_available_hours - employee.pto_hours_used
+  end
+
+  def local_available_hours
+    raise NotImplementedError
+  end
+
+  def accrued_hours
+    local_accrued_hours - employee.pto_hours_used
+  end
+
+  def local_accrued_hours
     raise NotImplementedError
   end
 
@@ -31,10 +43,13 @@ class PtoCalculator
   end
 end
 
-
 class FirstYearPtoCalculator < PtoCalculator
-  def available_hours
-    employee.months_employed * monthly_accrual
+  def local_available_hours
+    employee.months_employed_on(Dates.current_year_end) * monthly_accrual
+  end
+
+  def local_accrued_hours
+    employee.months_employed_on(Dates.current_date) * monthly_accrual
   end
 
   def annual_accrual
@@ -43,8 +58,12 @@ class FirstYearPtoCalculator < PtoCalculator
 end
 
 class MultiYearPtoCalculator < PtoCalculator
-  def available_hours
-    FIRST_YEAR_ACCRUAL + ((employee.months_employed - Dates::MONTHS_PER_YEAR) * monthly_accrual)
+  def local_available_hours
+    FIRST_YEAR_ACCRUAL + ((employee.months_employed_on(Dates.current_year_end) - Dates::MONTHS_PER_YEAR) * monthly_accrual)
+  end
+
+  def local_accrued_hours
+    FIRST_YEAR_ACCRUAL + ((employee.months_employed_on(Dates.current_date) - Dates::MONTHS_PER_YEAR) * monthly_accrual)
   end
 
   def annual_accrual

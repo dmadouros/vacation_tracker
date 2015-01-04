@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user = User.create!(email: 'employee@athn.org', password: 'password')
-profile = Profile.create!(hired_on: '11/11/2013')
+profile = Profile.create!(hired_on: '11/11/2013', pto_hours_used: 72)
 user.profile = profile
 user.save!

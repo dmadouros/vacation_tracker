@@ -15,5 +15,5 @@ Then(/^I should see my hire date$/) do
 end
 
 Then(/^I should see my available pto hours$/) do
-  expect(application.dashboard_page.pto_hours_available).to eq "100.00"
+  expect(application.dashboard_page.pto_hours_available).to eq "148.00"
 end

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104023740) do
+ActiveRecord::Schema.define(version: 20150104070559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "profiles", force: true do |t|
     t.datetime "hired_on"
+    t.integer  "pto_hours_used"
   end
 
   create_table "users", force: true do |t|

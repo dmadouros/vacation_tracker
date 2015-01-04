@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+
   let(:profile) { Profile.new }
   subject { User.new(profile: profile) }
 
@@ -25,7 +26,7 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '#months_employed' do
+  describe '#months_employed_on' do
     before do
       hired_on = '11/11/2013'
       subject.profile.hired_on = hired_on
@@ -33,13 +34,13 @@ RSpec.describe User, :type => :model do
 
     it 'should be 0 when hired_on is the same month/year as current date' do
       Timecop.freeze(DateTime.parse('2013-11-30')) do
-        expect(subject.months_employed).to eq 0
+        expect(subject.months_employed_on(Dates.current_date)).to eq 0
       end
     end
 
     it 'should be 12 when hired_on is same month as hired_on but 1 year later' do
       Timecop.freeze(DateTime.parse('2014-11-30')) do
-        expect(subject.months_employed).to eq 12
+        expect(subject.months_employed_on(Dates.current_date)).to eq 12
       end
     end
   end

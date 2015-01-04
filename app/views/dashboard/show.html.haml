@@ -1,20 +1,46 @@
 .row
   %h1 My Dashboard
+  %hr
 
+.row
+  %h2 About Me
 .row
   .large-12.columns.employee-header
     .row
+      .large-2.columns
+        %span.employee-header-label
+          Email:
+      .large-2.columns
+        = current_user.email
       .large-2.columns
         %span.employee-header-label
           Hire Date:
       .large-2.columns
         %span.hired_on
           = current_user.hired_on.to_s(:concise)
+      .large-2.columns
+        %span.employee-header-label
+          PTO Used:
+      .large-2.columns.end.text-right
+        72.00
+.row
+  %h2
+    PTO Summary
+    %small (as of #{DateTime.current.to_s(:concise)})
+
+.row
+  .large-12.columns.employee-header
+    .row
       .large-5.columns
         %span.employee-header-label
-          Available PTO Hours (as of
-          = DateTime.current.to_s(:concise)
-          ):
-      .large-1.columns.end.right
+          Accrued PTO Hours:
+      .large-3.columns.text-right
+        %span.pto_hours_accrued
+          = format("%.2f", current_user.pto_hours_accrued)
+    .row
+      .large-5.columns
+        %span.employee-header-label
+          Available PTO Hours (by end of #{DateTime.current.year}):
+      .large-3.columns.text-right
         %span.pto_hours_available
           = format("%.2f", current_user.pto_hours_available)

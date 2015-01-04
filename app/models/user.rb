@@ -15,12 +15,26 @@ class User < ActiveRecord::Base
     PtoCalculator.instance(self).available_hours
   end
 
-  def months_employed
-    years_employed = Dates.current_date.year - hired_on.year
-    (years_employed * Dates::MONTHS_PER_YEAR) + Dates.current_date.month - hired_on.month
+  def pto_hours_accrued
+    PtoCalculator.instance(self).accrued_hours
+  end
+
+  def months_employed_on(date)
+    years_employed = date.year - hired_on.year
+    (years_employed * Dates::MONTHS_PER_YEAR) + date.month - hired_on.month
+  end
+
+  def pto_hours_used
+    profile.pto_hours_used
   end
 
   def first_year?
-    months_employed <= Dates::MONTHS_PER_YEAR
+    months_employed_on(Dates.current_year_end) <= Dates::MONTHS_PER_YEAR
+  end
+
+  private
+
+  def months_employed
+    months_employed_on(Dates.current_date)
   end
 end
