@@ -11,14 +11,15 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self
  *= require foundation_and_overrides
+ *= require_self
  */
 
+@import 'foundation';
 
 .employee-header {
-  background-color: $gainsboro !important;
-  color: white !important;
+  background-color: $primary-color;
+  color: $label-font-color-alt;
 }
 .employee-header-label {
   font-weight: bold;
