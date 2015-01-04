@@ -12,4 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
  */
+
+
+.employee-header {
+  background-color: black !important;
+  color: white !important;
+}
+.employee-header-label {
+  font-weight: bold;
+}

@@ -12,14 +12,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
-gem 'devise'
-gem 'foundation-rails'
+gem 'devise', '~> 3.4.1'
+gem 'foundation-rails', '~> 5.4.0'
 gem 'pg'
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem 'timecop'
+  gem 'timecop', '~> 0.7.0'
 end
 
 group :development, :test do
