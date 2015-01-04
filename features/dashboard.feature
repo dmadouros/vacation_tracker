@@ -21,3 +21,10 @@ Feature: View My Dashboard
     When I visit my dashboard
     Then I should see my hire date
     And I should see my available pto hours
+
+  Scenario: I visit my dashboard when not logged in
+    Given I have an account
+    And I have logged in before
+    And I am not logged in
+    When I visit my dashboard
+    Then I should be asked for my authentication credentials

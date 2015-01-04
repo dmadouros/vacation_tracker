@@ -15,11 +15,11 @@ class LoginPage < PageObject
     driver.click_button 'Log in'
   end
 
-  def has_log_in_button?
-    driver.has_button?('Log in')
-  end
-
   def errors
     driver.all('.alert-box.alert').map(&:text)
+  end
+
+  def login_page?
+    driver.has_css?('h2', text: 'Log in')
   end
 end

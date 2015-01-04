@@ -8,6 +8,11 @@ describe DashboardController, :type => :controller do
     sign_in user
   end
 
+  it_should_behave_like 'an authenticating controller' do
+    before { sign_out user }
+    let(:controller_action) { :show }
+  end
+
   describe '#show' do
 
     context 'when user has profile' do

@@ -25,3 +25,7 @@ When(/^I login$/) do
   application.login_page.open
   application.login_with_credentials(email: 'test_user@example.com', password: 'password')
 end
+
+Then(/^I should be asked for my authentication credentials$/) do
+  expect(application.login_page.login_page?).to eq true
+end
