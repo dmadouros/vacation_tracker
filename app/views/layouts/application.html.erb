@@ -60,6 +60,11 @@
         <%= alert %>
       </div>
     <% end %>
+    <% if flash[:warning].present? %>
+      <div data-alert class="alert-box warning radius">
+        <%= flash[:warning] %>
+      </div>
+    <% end %>
   </div>
 </div>
 

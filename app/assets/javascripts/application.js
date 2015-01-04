@@ -12,8 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require foundation
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+  $('.datepicker').datepicker({
+    dateFormat: "dd-M-yy",
+    changeYear: true,
+    changeMonth: true,
+    yearRange: "2013:+5",
+    showMonthAfterYear: true,
+    beforeShowDay: $.datepicker.noWeekends,
+    constrainInput: true,
+    maxDate: "+5y",
+    minDate: "01-Jan-2013",
+    showOn: "focus"
+  });
+});

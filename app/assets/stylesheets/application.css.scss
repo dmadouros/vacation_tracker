@@ -12,15 +12,49 @@
  *
  *= require_tree .
  *= require foundation_and_overrides
+ *= require jquery-ui.min
  *= require_self
  */
-
 @import 'foundation';
 
 .employee-header {
-  background-color: $primary-color;
-  color: $label-font-color-alt;
+  background-color: $info-color;
 }
+
 .employee-header-label {
   font-weight: bold;
+}
+
+/*
+  For Devise
+*/
+#error_explanation {
+  h2 {
+    display: none;
+  }
+
+  ul {
+    margin: 0;
+    background-color: #f04124;
+    border-color: #f04124;
+    color: white;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding: 0.875rem 1.5rem 0.875rem 1.5rem;
+    font-size: 0.8125rem;
+    transition: opacity 300ms ease-out;
+  }
+}
+
+table {
+  width: 100%;
+
+  .button {
+    margin: 0;
+  }
 }

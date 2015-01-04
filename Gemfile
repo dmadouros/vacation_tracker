@@ -9,8 +9,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'spring', group: :development
 
 gem 'devise', '~> 3.4.1'
 gem 'foundation-rails', '~> 5.4.0'
@@ -20,6 +20,8 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'timecop', '~> 0.7.0'
+  gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 
 group :development, :test do
@@ -34,3 +36,5 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'unicorn'
 gem 'haml'
+gem 'validates_timeliness', '~> 3.0'
+gem 'interactor-rails', '~> 2.0'

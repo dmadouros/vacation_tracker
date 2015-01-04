@@ -2,22 +2,21 @@ require 'rails_helper'
 
 describe DashboardController, :type => :controller do
 
-  let(:user) { User.create!(email: 'test@example.com', password: 'password') }
-
-  before do
-    sign_in user
-  end
+  before { sign_in user }
 
   it_should_behave_like 'an authenticating controller' do
-    before { sign_out user }
     let(:controller_action) { :show }
+    let(:user) { create(:user) }
+    before { sign_out user }
   end
 
   describe '#show' do
 
     context 'when user has profile' do
+      let(:user) { create(:user) }
+
       before do
-        profile = Profile.create!(hired_on: "11/11/2014")
+        profile = create(:profile)
         user.profile = profile
         user.save!
       end
@@ -30,6 +29,8 @@ describe DashboardController, :type => :controller do
     end
 
     context 'when user has no profile' do
+      let(:user) { create(:user, profile: nil) }
+
       before do
         expect(user.profile).to_not be_present
       end

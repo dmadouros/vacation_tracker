@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
   delegate :hired_on, to: :profile
+  validates_associated :profile
 
   def has_profile?
     profile.present?

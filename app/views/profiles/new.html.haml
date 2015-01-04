@@ -1,0 +1,25 @@
+.row
+  %h1 Create Profile
+
+- if @profile.errors.any?
+  .row
+    .large-12.columns.end
+      #error_explanation
+        %ul
+          - @profile.errors.full_messages.each do |error|
+            = content_tag :li, error
+
+= form_for(@profile) do |f|
+  .row
+    .large-2.columns
+      = f.label :hired_on, "Hired On"
+    .large-2.columns.end
+      = f.text_field :hired_on, class: 'datepicker'
+  .row
+    .large-2.columns
+      = f.label :pto_hours_used, "PTO Hours Used:"
+    .large-2.columns.end
+      = f.text_field :pto_hours_used
+  .row
+    .large-offset-2.large-6.columns.end
+      = f.submit "Create", class: 'button'

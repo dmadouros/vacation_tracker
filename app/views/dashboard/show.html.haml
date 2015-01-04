@@ -3,7 +3,10 @@
   %hr
 
 .row
-  %h2 About Me
+  %h2
+    About Me
+    %small
+      = link_to "(Edit)", root_path
 .row
   .large-12.columns.employee-header
     .row
@@ -22,7 +25,8 @@
         %span.employee-header-label
           PTO Used:
       .large-2.columns.end.text-right
-        72.00
+        %span.pto_hours_used
+          = format("%.2f", current_user.profile.pto_hours_used)
 .row
   %h2
     PTO Summary
@@ -31,16 +35,64 @@
 .row
   .large-12.columns.employee-header
     .row
-      .large-5.columns
+      .large-9.columns
         %span.employee-header-label
           Accrued PTO Hours:
       .large-3.columns.text-right
         %span.pto_hours_accrued
           = format("%.2f", current_user.pto_hours_accrued)
     .row
-      .large-5.columns
+      .large-9.columns
         %span.employee-header-label
           Available PTO Hours (by end of #{DateTime.current.year}):
       .large-3.columns.text-right
         %span.pto_hours_available
           = format("%.2f", current_user.pto_hours_available)
+
+.row
+  %h2 PTO Requests
+.row
+  %button.button.tiny.radius
+    Create PTO Request
+.row
+  %table
+    %tr
+      %th Start
+      %th End
+      %th Hours
+      %th Status
+      %th &nbsp;
+    %tr
+      %td
+        03-Mar-2015
+      %td
+        03-Mar-2015
+      %td
+        8
+      %td
+        Pending
+      %td
+        %ul.button-group.radius
+          %li
+            %button.button.tiny.secondary
+              Edit
+          %li
+            %button.button.tiny.alert
+              Delete
+    %tr
+      %td
+        05-Jul-2015
+      %td
+        12-Jul-2015
+      %td
+        40
+      %td
+        In Progress
+      %td
+        %ul.button-group.radius
+          %li
+            %button.button.tiny.secondary
+              Edit
+          %li
+            %button.button.tiny.alert
+              Delete

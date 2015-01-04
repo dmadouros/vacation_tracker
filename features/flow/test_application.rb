@@ -15,6 +15,10 @@ class TestApplication
     @create_profile_page ||= CreateProfilePage.new(driver)
   end
 
+  def notification_section
+    @notification_section ||= NotificationSection.new(driver)
+  end
+
   def visit_dashboard
     dashboard_page.open
   end
