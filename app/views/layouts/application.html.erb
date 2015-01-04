@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title><%= content_for?(:title) ? yield(:title) : "VacationTracker" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "VacationTracker" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
-  </head>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= csrf_meta_tags %>
+</head>
 
-  <body>
+<body>
 
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
-  </body>
+<div class="fixed">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+          <%= link_to 'VacationTracker', root_path %>
+        </h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if user_signed_in? %>
+          <li class="has-dropdown">
+            <a href="#">
+              <span class="user_name"><%= current_user.email %></span>
+            </a>
+            <ul class="dropdown">
+              <li>
+                <%= link_to 'My Dashboard', root_path %>
+              </li>
+            </ul>
+          </li>
+          <li class="has-form">
+            <%= link_to 'Log out', 'users/sign_out', method: :delete, class: 'button alert' %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>
+
+<br/>
+
+<div class="row">
+  <div class="column small-12">
+    <% if notice.present? %>
+      <div data-alert class="alert-box success radius">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div data-alert class="alert-box alert radius">
+        <%= alert %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= yield %>
+<%= javascript_include_tag "application" %>
+</body>
 </html>
