@@ -11,9 +11,9 @@ Then(/^I should be shown my dashboard$/) do
 end
 
 Then(/^I should see my hire date$/) do
-  expect(application.dashboard_page.hired_on).to eq "11-Nov-2013"
+  expect(application.dashboard_page.hired_on).to eq '11-Nov-2013'
 end
 
 Then(/^I should see my available pto hours$/) do
-  expect(application.dashboard_page.pto_hours_available).to eq "148.00"
+  expect(application.dashboard_page.pto_hours_available).to eq '148.00'
 end

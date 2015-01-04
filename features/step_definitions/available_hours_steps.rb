@@ -17,5 +17,5 @@ When(/^I inquire about my available pto hours$/) do
 end
 
 Then(/^my available pto hours should be (.*)$/) do |expected_available_pto_hours|
-  expect(format("%.2f", @available_hours)).to eq expected_available_pto_hours
+  expect(format('%.2f', @available_hours)).to eq expected_available_pto_hours
 end

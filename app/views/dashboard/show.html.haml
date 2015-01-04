@@ -6,7 +6,7 @@
   %h2
     About Me
     %small
-      = link_to "(Edit)", root_path
+      = link_to '(Edit)', root_path
 .row
   .large-12.columns.employee-header
     .row
@@ -26,7 +26,7 @@
           PTO Used:
       .large-2.columns.end.text-right
         %span.pto_hours_used
-          = format("%.2f", current_user.profile.pto_hours_used)
+          = format('%.2f', current_user.profile.pto_hours_used)
 .row
   %h2
     PTO Summary
@@ -40,14 +40,14 @@
           Accrued PTO Hours:
       .large-3.columns.text-right
         %span.pto_hours_accrued
-          = format("%.2f", current_user.pto_hours_accrued)
+          = format('%.2f', current_user.pto_hours_accrued)
     .row
       .large-9.columns
         %span.employee-header-label
           Available PTO Hours (by end of #{DateTime.current.year}):
       .large-3.columns.text-right
         %span.pto_hours_available
-          = format("%.2f", current_user.pto_hours_available)
+          = format('%.2f', current_user.pto_hours_available)
 
 .row
   %h2 PTO Requests

@@ -20,15 +20,15 @@
 $(function(){
   $(document).foundation();
   $('.datepicker').datepicker({
-    dateFormat: "dd-M-yy",
+    dateFormat: 'dd-M-yy',
     changeYear: true,
     changeMonth: true,
-    yearRange: "2013:+5",
+    yearRange: '2013:+5',
     showMonthAfterYear: true,
     beforeShowDay: $.datepicker.noWeekends,
     constrainInput: true,
-    maxDate: "+5y",
-    minDate: "01-Jan-2013",
-    showOn: "focus"
+    maxDate: '+5y',
+    minDate: '01-Jan-2013',
+    showOn: 'focus'
   });
 });
