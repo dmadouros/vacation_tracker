@@ -1,0 +1,15 @@
+Feature: View My Dashboard
+
+  Scenario: I am a first time user
+    Given I have an account
+    And I am not logged in
+    And I have never logged in before
+    When I login
+    Then I should be asked to create my profile
+
+  Scenario: I am a returning user
+    Given I have an account
+    And I am not logged in
+    But I have logged in before
+    When I login
+    Then I should be shown my dashboard
