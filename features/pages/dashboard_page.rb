@@ -18,4 +18,23 @@ class DashboardPage < PageObject
   def pto_hours_available
     driver.first('.pto_hours_available').try(:text)
   end
+
+  def pto_requests
+    pto_request_rows = driver.all('.pto_request')
+    pto_request_rows.map do |pto_request_row|
+      build_pto_request(pto_request_row)
+    end
+  end
+
+  private
+
+  def build_pto_request(pto_request_row)
+    fields = pto_request_row.all('td')
+    OpenStruct.new(
+      start_date: DateTime.parse(fields[0].text),
+      end_date: DateTime.parse(fields[1].text),
+      hours: Integer(fields[2].text),
+      status: fields[3].text
+    )
+  end
 end

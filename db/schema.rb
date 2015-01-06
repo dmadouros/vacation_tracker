@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104070559) do
+ActiveRecord::Schema.define(version: 20150106041217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20150104070559) do
     t.datetime "hired_on"
     t.integer  "pto_hours_used"
   end
+
+  create_table "pto_requests", force: true do |t|
+    t.integer "user_id"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "hours"
+  end
+
+  add_index "pto_requests", ["user_id"], name: "index_pto_requests_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

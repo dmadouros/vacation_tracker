@@ -53,47 +53,30 @@
 .row
   %h2 PTO Requests
 .row
-  %button.button.tiny.radius
-    Create PTO Request
+  = link_to 'Create PTO Request', new_pto_request_path(current_user), {class: 'button tiny radius'}
 .row
-  %table
+  %table.pto_requests
     %tr
       %th Start
       %th End
       %th Hours
       %th Status
       %th &nbsp;
-    %tr
-      %td
-        03-Mar-2015
-      %td
-        03-Mar-2015
-      %td
-        8
-      %td
-        Pending
-      %td
-        %ul.button-group.radius
-          %li
-            %button.button.tiny.secondary
-              Edit
-          %li
-            %button.button.tiny.alert
-              Delete
-    %tr
-      %td
-        05-Jul-2015
-      %td
-        12-Jul-2015
-      %td
-        40
-      %td
-        In Progress
-      %td
-        %ul.button-group.radius
-          %li
-            %button.button.tiny.secondary
-              Edit
-          %li
-            %button.button.tiny.alert
-              Delete
+    - current_user.pto_requests.each do |pto_request|
+      %tr.pto_request
+        %td
+          = pto_request.start_date.to_s(:concise)
+        %td
+          = pto_request.end_date.to_s(:concise)
+        %td
+          = pto_request.hours
+        %td
+          = pto_request.status
+        %td
+          %ul.button-group.radius
+            %li
+              %button.button.tiny.secondary
+                Edit
+            %li
+              %button.button.tiny.alert
+                Delete

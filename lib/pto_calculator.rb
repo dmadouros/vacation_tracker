@@ -11,7 +11,7 @@ class PtoCalculator
   end
 
   def available_hours
-    local_available_hours - employee.pto_hours_used
+    local_available_hours - employee.pto_hours_used - employee.pto_hours_requested
   end
 
   def local_available_hours
@@ -19,7 +19,7 @@ class PtoCalculator
   end
 
   def accrued_hours
-    local_accrued_hours - employee.pto_hours_used
+    local_accrued_hours - employee.pto_hours_used - employee.pto_hours_requested
   end
 
   def local_accrued_hours

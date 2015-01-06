@@ -1,11 +1,21 @@
 Given(/^my I was hired on (.*)$/) do |hired_on|
   profile = build(:profile, hired_on: DateTime.parse(hired_on), pto_hours_used: 0)
-  @employee = build(:user, profile: profile)
+  @employee = create(:user, profile: profile)
 end
 
 Given(/^today is (.*)$/) do |current_date|
   current_date = DateTime.parse(current_date)
   Timecop.freeze(current_date)
+end
+
+Given(/^I've requested (\d+) hours of PTO$/) do |pto_hours_requested|
+  if Integer(pto_hours_requested) > 0
+    @employee.pto_requests.create!(
+      start_date: 1.day.from_now,
+      end_date: 2.days.from_now,
+      hours: pto_hours_requested
+    )
+  end
 end
 
 Given(/^I used (\d+) hours of PTO$/) do |pto_hours_used|

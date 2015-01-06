@@ -15,6 +15,10 @@ class TestApplication
     @create_profile_page ||= CreateProfilePage.new(driver)
   end
 
+  def create_pto_request_page
+    @create_pto_request_page ||= CreatePtoRequestPage.new(driver)
+  end
+
   def notification_section
     @notification_section ||= NotificationSection.new(driver)
   end

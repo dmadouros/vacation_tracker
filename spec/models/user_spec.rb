@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
 
   let(:profile) { build(:profile) }
-  subject { build(:user, profile: profile) }
+  subject { create(:user, profile: profile) }
 
   describe '#has_profile?' do
     it 'should be true when the user has a profile' do
@@ -55,6 +55,25 @@ RSpec.describe User, :type => :model do
       Timecop.freeze(DateTime.parse('2013-11-30')) do
         expect(subject.first_year?).to eq true
       end
+    end
+  end
+
+  describe '#pto_requests' do
+    let!(:pto_request) { create(:pto_request, user: subject) }
+
+    it 'should return a collection of pto requests' do
+      expect(subject.pto_requests).to include pto_request
+    end
+  end
+
+  describe '#pto_hours_requested' do
+    before do
+      create(:pto_request, hours: 8, user: subject)
+      create(:pto_request, hours: 16, user: subject)
+    end
+
+    it 'should be the sum of the hours of all pto requests' do
+      expect(subject.pto_hours_requested).to eq 24
     end
   end
 end

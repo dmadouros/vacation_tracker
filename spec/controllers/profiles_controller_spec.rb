@@ -50,7 +50,6 @@ RSpec.describe ProfilesController, :type => :controller do
   end
 
   describe '#create' do
-
     let(:user) { create(:user, profile: nil) }
     let(:params) do
       params = {

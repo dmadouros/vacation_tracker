@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :profile
+  has_many :pto_requests
   delegate :hired_on, to: :profile
   validates_associated :profile
 
@@ -31,6 +32,10 @@ class User < ActiveRecord::Base
 
   def first_year?
     months_employed_on(Dates.current_year_end) <= Dates::MONTHS_PER_YEAR
+  end
+
+  def pto_hours_requested
+    pto_requests.sum(:hours)
   end
 
   private
