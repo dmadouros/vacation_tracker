@@ -7,6 +7,10 @@ When(/^I create a PTO request for 8 hours$/) do
   create_pto_request_page.create_pto_request
 end
 
+When(/^I try to create a pto request$/) do
+  application.create_pto_request_page.open
+end
+
 Then(/^I should see the PTO request in my list$/) do
   Timecop.freeze('3-Mar-2014')
   dashboard_page = application.dashboard_page

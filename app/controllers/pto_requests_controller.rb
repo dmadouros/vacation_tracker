@@ -1,4 +1,5 @@
 class PtoRequestsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @pto_request = PtoRequest.new
