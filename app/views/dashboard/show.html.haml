@@ -62,6 +62,10 @@
       %th Hours
       %th Status
       %th &nbsp;
+    - if current_user.pto_requests.empty?
+      %tr.pto_request
+        %td.empty_table_msg(colspan="5")
+          You don't have any PTO requests :(
     - current_user.pto_requests.each do |pto_request|
       %tr.pto_request
         %td
