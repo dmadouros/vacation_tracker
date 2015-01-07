@@ -30,7 +30,8 @@ class DashboardPage < PageObject
 
   def build_pto_request(pto_request_row)
     fields = pto_request_row.all('td')
-    OpenStruct.new(
+    PtoRequestRow.new(
+      pto_request_row,
       start_date: DateTime.parse(fields[0].text),
       end_date: DateTime.parse(fields[1].text),
       hours: Integer(fields[2].text),

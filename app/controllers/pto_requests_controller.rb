@@ -19,6 +19,13 @@ class PtoRequestsController < ApplicationController
     end
   end
 
+  def destroy
+    DeletePtoRequest.call(current_user: current_user, pto_request_id: params[:id])
+
+    flash[:notice] = 'PTO Request deleted successfully.'
+    redirect_to dashboard_url
+  end
+
   private
 
   def pto_request_params

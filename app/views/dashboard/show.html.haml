@@ -63,7 +63,7 @@
       %th Status
       %th &nbsp;
     - if current_user.pto_requests.empty?
-      %tr.pto_request
+      %tr
         %td.empty_table_msg(colspan="5")
           You don't have any PTO requests :(
     - current_user.pto_requests.each do |pto_request|
@@ -82,5 +82,4 @@
               %button.button.tiny.secondary
                 Edit
             %li
-              %button.button.tiny.alert
-                Delete
+              = link_to 'Delete', pto_request_path(pto_request), method: :delete, class: 'button tiny alert'

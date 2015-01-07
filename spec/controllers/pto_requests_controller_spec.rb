@@ -76,4 +76,27 @@ describe PtoRequestsController, :type => :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    let!(:pto_request) { create(:pto_request, user: user) }
+    let(:context) { double(:context, success?: true) }
+
+    before do
+      sign_in user
+      expect(DeletePtoRequest).to receive(:call).once.with(current_user: user, pto_request_id: pto_request.id.to_s).and_return(context)
+    end
+
+
+    it 'should redirect to the dashboard page' do
+      delete :destroy, id: pto_request.id.to_s
+
+      expect(response).to redirect_to dashboard_url
+    end
+
+    it 'should set a success message' do
+      delete :destroy, id: pto_request.id.to_s
+
+      expect(flash[:notice]).to eq 'PTO Request deleted successfully.'
+    end
+  end
 end
