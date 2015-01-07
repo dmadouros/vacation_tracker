@@ -36,5 +36,5 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'unicorn'
 gem 'haml'
-gem 'validates_timeliness', '~> 3.0'
+gem 'jc-validates_timeliness'
 gem 'interactor-rails', '~> 2.0'
