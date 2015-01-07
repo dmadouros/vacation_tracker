@@ -23,6 +23,22 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @profile = current_user.profile
+  end
+
+  def update
+    result = EditProfile.call(current_user: current_user, profile_params: profile_params)
+
+    if result.success?
+      flash[:notice] = 'Profile updated successfully.'
+      redirect_to dashboard_url
+    else
+      @profile = result.profile
+      render :edit
+    end
+  end
+
   private
 
   def profile_params

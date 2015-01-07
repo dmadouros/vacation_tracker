@@ -99,4 +99,72 @@ RSpec.describe ProfilesController, :type => :controller do
       end
     end
   end
+
+  describe '#edit' do
+
+    let(:user) { create(:user) }
+
+    it 'should render the edit page' do
+      get :edit, {id: user.profile.id}
+
+      expect(response).to render_template(:edit)
+    end
+
+    it 'should assign the profile' do
+      get :edit, {id: user.profile.id}
+
+      expect(assigns(:profile)).to eq(user.profile)
+    end
+  end
+
+  describe '#update' do
+
+    let(:user) { create(:user) }
+    let(:profile) { user.profile }
+    let(:params) do
+      {
+        id: profile.id,
+        profile: {
+        'hired_on' => '11-Apr-2013',
+        'pto_hours_used' => '106'
+        }
+      }
+    end
+
+    before do
+      expect(EditProfile).to receive(:call).once.with(current_user: user, profile_params: params[:profile]).and_return(context)
+    end
+
+    context 'when successful' do
+      let(:context) { double(:context, success?: true) }
+
+      it 'should redirect to the dashboard page' do
+        put :update, params
+
+        expect(response).to redirect_to dashboard_url
+      end
+
+      it 'should set a success message' do
+        put :update, params
+
+        expect(flash[:notice]).to eq 'Profile updated successfully.'
+      end
+    end
+
+    context 'when not successful' do
+      let(:context) { double(:context, success?: false, profile: profile) }
+
+      it 'should assign the profile' do
+        put :update, params
+
+        expect(assigns(:profile)).to eq profile
+      end
+
+      it 'should render the edit page' do
+        put :update, params
+
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

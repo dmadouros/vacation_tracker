@@ -19,8 +19,16 @@ class TestApplication
     @create_pto_request_page ||= CreatePtoRequestPage.new(driver)
   end
 
+  def edit_profile_page
+    @edit_profile_page ||= EditProfilePage.new(driver)
+  end
+
   def notification_section
     @notification_section ||= NotificationSection.new(driver)
+  end
+
+  def error_notification_section
+    @error_notification_section ||= ErrorNotificationSection.new(driver)
   end
 
   def visit_dashboard
