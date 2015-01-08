@@ -27,8 +27,8 @@ class TestApplication
     @notification_section ||= NotificationSection.new(driver)
   end
 
-  def error_notification_section
-    @error_notification_section ||= ErrorNotificationSection.new(driver)
+  def form_error_section
+    @form_error_section ||= FomErrorSection.new(driver)
   end
 
   def visit_dashboard
