@@ -2,8 +2,7 @@ class EditProfile
   include Interactor
 
   def call
-    profile.update_attributes(context.profile_params)
-    unless profile.save
+    unless profile.update_attributes(context.profile_params)
       context.fail!(profile: profile)
     end
   end
