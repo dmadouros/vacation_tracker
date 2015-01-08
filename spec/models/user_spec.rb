@@ -19,7 +19,7 @@ RSpec.describe User, :type => :model do
 
   describe '#hired_on' do
     it 'should be the hired_on date from the profile if profile present' do
-      hired_on = '11/11/2013'
+      hired_on = '11-Nov-2013'
       subject.profile.hired_on = hired_on
 
       expect(subject.hired_on).to eq hired_on
@@ -28,7 +28,7 @@ RSpec.describe User, :type => :model do
 
   describe '#months_employed_on' do
     before do
-      hired_on = '11/11/2013'
+      hired_on = '11-Nov-2013'
       subject.profile.hired_on = hired_on
     end
 
@@ -47,7 +47,7 @@ RSpec.describe User, :type => :model do
 
   describe '#first_year?' do
     before do
-      hired_on = '11/11/2013'
+      hired_on = '11-Nov-2013'
       subject.profile.hired_on = hired_on
     end
 

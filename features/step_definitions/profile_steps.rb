@@ -14,7 +14,7 @@ end
 Given(/^I have a profile$/) do
   email = 'test_user@example.com'
   password = 'password'
-  profile = create(:profile, hired_on: '11/11/2013', pto_hours_used: 72)
+  profile = create(:profile, hired_on: '11-Nov-2013', pto_hours_used: 72)
   @user = create(:user, email: email, password: password, profile: profile)
 end
 

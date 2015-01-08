@@ -7,7 +7,7 @@ end
 Given(/^I am not logged in$/) do; end
 
 Given(/^I have logged in before$/) do
-  profile = create(:profile, hired_on: '11/11/2013', pto_hours_used: 72)
+  profile = create(:profile, hired_on: '11-Nov-2013', pto_hours_used: 72)
   @user.profile = profile
   @user.save!
 end
