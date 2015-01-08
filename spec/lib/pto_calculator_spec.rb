@@ -9,7 +9,7 @@ describe PtoCalculator do
 
   describe '#accrued_hours' do
 
-    it 'should be 6.67 after the first month of employement' do
+    it 'should be 6.67 after the first month of employment' do
       Timecop.freeze(DateTime.parse('2013-12-01')) do
         expect(subject.accrued_hours).to be_within(0.01).of(6.67)
       end
