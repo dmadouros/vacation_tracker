@@ -3,7 +3,7 @@
     .large-2.columns
       = f.label :hired_on, 'Hired On:'
     .large-2.columns.end
-      = f.text_field :hired_on, class: 'datepicker', value: @profile.hired_on.to_s(:concise)
+      = f.text_field :hired_on, class: 'datepicker', value: DateHelpers.concise_format(@profile.hired_on)
   .row
     .large-2.columns
       = f.label :pto_hours_used, 'PTO Hours Used:'
