@@ -1,25 +1,6 @@
 .row
   %h1 Edit Profile
 
-- if @profile.errors.any?
-  .row
-    .large-12.columns.end
-      #error_explanation
-        %ul
-          - @profile.errors.full_messages.each do |error|
-            = content_tag :li, error
+= render 'shared/errors', model: @profile
 
-= form_for(@profile) do |f|
-  .row
-    .large-2.columns
-      = f.label :hired_on, 'Hired On'
-    .large-2.columns.end
-      = f.text_field :hired_on, class: 'datepicker', value: @profile.hired_on.to_s(:concise)
-  .row
-    .large-2.columns
-      = f.label :pto_hours_used, 'PTO Hours Used:'
-    .large-2.columns.end
-      = f.text_field :pto_hours_used
-  .row
-    .large-offset-2.large-6.columns.end
-      = f.submit 'Save', class: 'button'
+= render 'form', button_label: 'Save'
