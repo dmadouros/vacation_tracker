@@ -17,7 +17,7 @@ describe PtoRequestsController, :type => :controller do
       expect(response).to render_template(:new)
     end
 
-    it 'should assign a new profile' do
+    it 'should assign a new pto_request' do
       get :new
 
       expect(assigns(:pto_request)).to be_a(PtoRequest)
@@ -65,7 +65,6 @@ describe PtoRequestsController, :type => :controller do
       it 'should assign the pto_request' do
         post :create, params
 
-        profile = assigns(:pto_request)
         expect(assigns(:pto_request)).to eq pto_request
       end
 
@@ -85,7 +84,6 @@ describe PtoRequestsController, :type => :controller do
       sign_in user
       expect(DeletePtoRequest).to receive(:call).once.with(current_user: user, pto_request_id: pto_request.id.to_s).and_return(context)
     end
-
 
     it 'should redirect to the dashboard page' do
       delete :destroy, id: pto_request.id.to_s

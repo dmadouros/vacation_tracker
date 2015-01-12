@@ -6,7 +6,7 @@ describe CreatePtoRequest do
     let(:interactor) { CreatePtoRequest.new(current_user: user, pto_request_params: pto_request_params) }
     let(:context) { interactor.context }
 
-    context 'when given valid profile params' do
+    context 'when given valid pto_request params' do
       let(:pto_request_params) do
         {
           start_date: '01-Mar-2014',
@@ -27,7 +27,7 @@ describe CreatePtoRequest do
         end.to change(PtoRequest, :count).by(1)
       end
 
-      it 'should set the profile parameters' do
+      it 'should set the pto_request parameters' do
         interactor.call
 
         pto_request = PtoRequest.last
@@ -43,7 +43,7 @@ describe CreatePtoRequest do
       end
     end
 
-    context 'when given invalid profile params' do
+    context 'when given invalid pto_request params' do
       let(:pto_request_params) { {} }
 
       it 'should fail' do
@@ -52,7 +52,7 @@ describe CreatePtoRequest do
         end.to raise_error(Interactor::Failure)
       end
 
-      it 'should not create a profile' do
+      it 'should not create a pto_request' do
         expect do
           begin
             interactor.call
@@ -61,7 +61,7 @@ describe CreatePtoRequest do
         end.to_not change(PtoRequest, :count)
       end
 
-      it 'should not assign the profile to the user' do
+      it 'should not assign the pto_request to the user' do
         begin
           interactor.call
         rescue
