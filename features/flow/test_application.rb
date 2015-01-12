@@ -32,7 +32,7 @@ class TestApplication
   end
 
   def form_error_section
-    @form_error_section ||= FomErrorSection.new(driver)
+    @form_error_section ||= FormErrorSection.new(driver)
   end
 
   def visit_dashboard
