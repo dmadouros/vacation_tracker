@@ -8,6 +8,10 @@ class PtoRequestRow < PageObject
     @status = options.fetch(:status)
   end
 
+  def edit_pto_request
+    driver.click_on 'Edit'
+  end
+
   def destroy_pto_request
     driver.click_on 'Delete'
   end

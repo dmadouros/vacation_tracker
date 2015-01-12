@@ -19,6 +19,22 @@ class PtoRequestsController < ApplicationController
     end
   end
 
+  def edit
+    @pto_request = PtoRequest.find(params[:id])
+  end
+
+  def update
+    result = EditPtoRequest.call(current_user: current_user, pto_request_id: params[:id], pto_request_params: pto_request_params)
+
+    if result.success?
+      flash[:notice] = 'PTO request updated successfully.'
+      redirect_to dashboard_url
+    else
+      @pto_request = result.pto_request
+      render :edit
+    end
+  end
+
   def destroy
     DeletePtoRequest.call(current_user: current_user, pto_request_id: params[:id])
 

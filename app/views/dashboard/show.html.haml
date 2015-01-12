@@ -79,7 +79,6 @@
         %td
           %ul.button-group.radius
             %li
-              %button.button.tiny.secondary
-                Edit
+              = link_to 'Edit', edit_pto_request_path(pto_request), method: :get, class: 'button tiny'
             %li
               = link_to 'Delete', pto_request_path(pto_request), method: :delete, class: 'button tiny alert'
