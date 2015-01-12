@@ -1,13 +1,7 @@
 .row
   %h1 Create PTO Request
 
-- if @pto_request.errors.any?
-  .row
-    .large-12.columns.end
-      #error_explanation
-        %ul
-          - @pto_request.errors.full_messages.each do |error|
-            = content_tag :li, error
+= render 'shared/errors', model: @pto_request
 
 = form_for(@pto_request) do |f|
   .row
