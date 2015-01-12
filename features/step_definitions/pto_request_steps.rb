@@ -37,7 +37,7 @@ Then(/^I should see the PTO request in my list$/) do
   expect(pto_request.status).to eq 'Completed'
 end
 
-Then(/^I should see not see that PTO request in my list$/) do
+Then(/^I should not see that PTO request in my list$/) do
   dashboard_page = application.dashboard_page
   expect(dashboard_page.pto_requests).to be_empty
 end

@@ -10,4 +10,4 @@ Feature: Remove PTO Request
     And I am logged in
     And I have added a PTO request
     When I remove that PTO request
-    Then I should see not see that PTO request in my list
+    Then I should not see that PTO request in my list
