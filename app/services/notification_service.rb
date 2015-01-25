@@ -23,13 +23,7 @@ class NotificationService
 
   def within_reporting_period
     <<-SQL
-    (
       start_date between '#{report_date}' and '#{report_date.end_of_month}'
-    )
-    or
-    (
-      end_date between '#{report_date}' and '#{report_date.end_of_month}'
-    )
     SQL
   end
 end
