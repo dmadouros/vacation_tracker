@@ -12,7 +12,6 @@ class PtoRequest < ActiveRecord::Base
       type: :date
     }
   validates :hours, numericality: {
-      only_integer: true,
       less_than_or_equal_to: 120,
       greater_than: 0
     }

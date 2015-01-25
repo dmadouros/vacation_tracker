@@ -123,11 +123,11 @@ RSpec.describe PtoRequest, :type => :model do
   end
 
   describe '#hours' do
-    it 'should be invalid when not an integer' do
+    it 'should be valid when a float' do
       pto_request.hours = 10.72
 
-      expect(pto_request.valid?).to be_falsey
-      expect(pto_request.errors[:hours]).to_not be_empty
+      expect(pto_request.valid?).to be_truthy
+      expect(pto_request.errors[:hours]).to be_empty
     end
 
     it 'should be invalid when not a number' do
