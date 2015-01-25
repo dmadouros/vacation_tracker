@@ -111,6 +111,15 @@ RSpec.describe PtoRequest, :type => :model do
       expect(pto_request.valid?).to be_falsey
       expect(pto_request.errors[:end_date]).to_not be_empty
     end
+
+    it 'should be invalid if end_date is not in same month as start_date' do
+      pto_request = build(:pto_request, start_date: '31-Jan-2015')
+
+      pto_request.end_date = '01-Feb-2015'
+
+      expect(pto_request.valid?).to be_falsey
+      expect(pto_request.errors[:end_date]).to include 'must be in the same month'
+    end
   end
 
   describe '#hours' do

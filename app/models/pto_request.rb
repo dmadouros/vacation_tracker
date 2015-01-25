@@ -7,6 +7,8 @@ class PtoRequest < ActiveRecord::Base
     }
   validates :end_date, timeliness: {
       after: ->(pto_request) { pto_request.user.hired_on },
+      on_or_before: ->(pto_request) { pto_request.start_date.end_of_month },
+      on_or_before_message: 'must be in the same month',
       type: :date
     }
   validates :hours, numericality: {
