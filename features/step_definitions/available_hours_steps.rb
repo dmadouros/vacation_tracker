@@ -11,8 +11,8 @@ end
 Given(/^I've requested (\d+) hours of PTO$/) do |pto_hours_requested|
   if Integer(pto_hours_requested) > 0
     @employee.pto_requests.create!(
-      start_date: 1.day.from_now,
-      end_date: 2.days.from_now,
+      start_date: 2.days.until(Time.now.end_of_month),
+      end_date: 1.days.until(Time.now.end_of_month),
       hours: pto_hours_requested
     )
   end

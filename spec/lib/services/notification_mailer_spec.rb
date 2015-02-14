@@ -3,6 +3,9 @@ require 'rails_helper'
 describe NotificationMailer do
   let(:user) { create(:user, email: 'test@example.com') }
 
+  before { Timecop.freeze(DateTime.parse('25-Jan-2015'))}
+  after { Timecop.return }
+
   it 'should send email with correct parameters' do
     email_args = {
       to: 'test@example.com',
