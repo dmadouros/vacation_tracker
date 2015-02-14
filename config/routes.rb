@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   resources :profiles, only: [:new, :create]
   resources :pto_requests, only: [:new, :create, :edit, :update, :destroy]
   resources :profiles, only: [:new, :create, :edit, :update]
+
+  namespace :api do
+    namespace :v1 do
+      resources :pto_requests, only: [:index]
+      post 'auth/sign_in' => 'sessions#create'
+      get 'overview' => 'overview#show'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

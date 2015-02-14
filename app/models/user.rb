@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_token_authenticatable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,7 +8,7 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
   has_many :pto_requests
-  delegate :hired_on, to: :profile
+  delegate :hired_on, :pto_hours_used, to: :profile
   validates_associated :profile
 
   def has_profile?
@@ -24,10 +26,6 @@ class User < ActiveRecord::Base
   def months_employed_on(date)
     years_employed = date.year - hired_on.year
     (years_employed * Dates::MONTHS_PER_YEAR) + date.month - hired_on.month
-  end
-
-  def pto_hours_used
-    profile.pto_hours_used
   end
 
   def first_year?
