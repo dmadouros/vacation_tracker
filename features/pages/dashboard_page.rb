@@ -34,7 +34,7 @@ class DashboardPage < PageObject
       pto_request_row,
       start_date: DateTime.parse(fields[0].text),
       end_date: DateTime.parse(fields[1].text),
-      hours: Integer(fields[2].text),
+      hours: Float(fields[2].text),
       status: fields[3].text
     )
   end
