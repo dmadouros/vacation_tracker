@@ -4,7 +4,7 @@ class NotificationService
   end
 
   def send_monthly_report
-    User.all.each do |user|
+    User.with_profile.all.each do |user|
       NotificationMailer.monthly_vacation_status(
         user,
         pto_requests_for_reporting_period(user),

@@ -13,6 +13,17 @@ describe NotificationService do
     described_class.new(report_date).send_monthly_report
   end
 
+  it 'should exclude users that do not yet have a profile' do
+    user = create(:user, email: 'test@example.com', profile: nil)
+    report_date = Date.current
+
+    expect(NotificationMailer).
+      to_not receive(:monthly_vacation_status).
+          with(user, [], report_date)
+
+    described_class.new(report_date).send_monthly_report
+  end
+
   it 'should send the pto requests for the given month' do
     report_date = Date.new(2015, 1, 1)
     user = create(:user)

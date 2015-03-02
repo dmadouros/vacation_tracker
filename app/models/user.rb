@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   delegate :hired_on, :pto_hours_used, to: :profile
   validates_associated :profile
 
+  scope :with_profile, -> { where.not(profile_id: nil) }
+
   def has_profile?
     profile.present?
   end
