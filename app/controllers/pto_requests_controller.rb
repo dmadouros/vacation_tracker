@@ -45,6 +45,6 @@ class PtoRequestsController < ApplicationController
   private
 
   def pto_request_params
-    params.require(:pto_request).permit(:start_date, :end_date, :hours)
+    params.require(:pto_request).permit(:start_date, :end_date, :hours, :floating_holiday)
   end
 end

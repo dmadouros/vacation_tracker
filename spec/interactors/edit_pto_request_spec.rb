@@ -13,7 +13,8 @@ describe EditPtoRequest do
         {
           start_date: '11-Dec-2013',
           end_date: '12-Dec-2013',
-          hours: '7'
+          hours: '7',
+          floating_holiday: 'true',
         }
       end
 
@@ -30,6 +31,7 @@ describe EditPtoRequest do
         expect(pto_request.start_date).to eq DateTime.parse('11-Dec-2013')
         expect(pto_request.end_date).to eq DateTime.parse('12-Dec-2013')
         expect(pto_request.hours).to eq 7
+        expect(pto_request.floating_holiday).to eq true
       end
     end
 

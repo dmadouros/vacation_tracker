@@ -22,6 +22,10 @@ class PtoRequest < ActiveRecord::Base
     return 'In Progress' if in_progress?
   end
 
+  def pto_type
+    floating_holiday ? 'Floating Holiday' : 'PTO'
+  end
+
   private
 
   def pending?
