@@ -41,21 +41,67 @@ describe NotificationMailer do
     expect(mail.body).to include 'Start'
     expect(mail.body).to include 'End'
     expect(mail.body).to include 'Hours'
+    expect(mail.body).to include 'Type'
     expect(mail.body).to include '01-Jan-2015'
     expect(mail.body).to include '02-Jan-2015'
     expect(mail.body).to include '8'
+    expect(mail.body).to include 'PTO'
   end
 
-  it 'should total the pto hours' do
+  it 'should include floating holiday requests for the previous month' do
     pto_requests = [
-      create(:pto_request, user: user, hours: 8),
-      create(:pto_request, user: user, hours: 10),
-      create(:pto_request, user: user, hours: 15),
+        create(:pto_request,
+               user: user,
+               start_date: '01-Jan-2015',
+               end_date: '02-Jan-2015',
+               hours: 8,
+               floating_holiday: true,
+        )
     ]
 
     mail = NotificationMailer.monthly_vacation_status(user, pto_requests, Date.new(2015, 1, 1))
 
-    expect(mail.body).to include 'Total: 33.00 hours'
+    expect(mail.body).to include 'I took the following time off this month:'
+    expect(mail.body).to include 'Start'
+    expect(mail.body).to include 'End'
+    expect(mail.body).to include 'Hours'
+    expect(mail.body).to include '01-Jan-2015'
+    expect(mail.body).to include '02-Jan-2015'
+    expect(mail.body).to include '8'
+    expect(mail.body).to include 'Floating Holiday'
+  end
+
+  it 'should total the pto hours' do
+    pto_requests = [
+        create(:pto_request, user: user, hours: 8),
+        create(:pto_request, user: user, hours: 10),
+        create(:pto_request, user: user, hours: 15),
+    ]
+
+    mail = NotificationMailer.monthly_vacation_status(user, pto_requests, Date.new(2015, 1, 1))
+    expect(mail.body).to include 'Total PTO: 33.00 hours'
+  end
+
+  it 'should exclude floating holidays from the total hours' do
+    pto_requests = [
+        create(:pto_request, user: user, hours: 8),
+        create(:pto_request, user: user, hours: 10),
+        create(:pto_request, user: user, hours: 15, floating_holiday: true),
+    ]
+
+    mail = NotificationMailer.monthly_vacation_status(user, pto_requests, Date.new(2015, 1, 1))
+
+    expect(mail.body).to include 'Total PTO: 18.00 hours'
+  end
+
+  it 'should include a special note about floating holidays' do
+    pto_requests = [
+        create(:pto_request, user: user, hours: 8, floating_holiday: true),
+    ]
+
+    mail = NotificationMailer.monthly_vacation_status(user, pto_requests, Date.new(2015, 1, 1))
+
+    expect(mail.body).to include 'I took 8.00 hours of floating holiday this month.'
   end
 
   it 'should handle no vacation taken in the previous month' do

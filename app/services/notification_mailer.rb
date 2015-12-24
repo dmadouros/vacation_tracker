@@ -2,6 +2,7 @@ class NotificationMailer < ActionMailer::Base
   def monthly_vacation_status(user, pto_requests, report_date)
     @pto_requests = pto_requests
     @total_hours = total_hours(pto_requests)
+    @floating_holiday_hours = floating_holiday_hours(pto_requests)
     @report_date = report_date
     @user = user
 
@@ -15,6 +16,14 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def total_hours(pto_requests)
-    pto_requests.map(&:hours).reduce(:+)
+    deductible_pto_requests(pto_requests) || 0
+  end
+
+  def floating_holiday_hours(pto_requests)
+    pto_requests.select(&:floating_holiday).map(&:hours).reduce(:+)
+  end
+
+  def deductible_pto_requests(pto_requests)
+    pto_requests.reject(&:floating_holiday).map(&:hours).reduce(:+)
   end
 end
