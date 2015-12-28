@@ -205,22 +205,4 @@ RSpec.describe PtoRequest, :type => :model do
       end
     end
   end
-
-  describe '#pto_type' do
-    context 'when PTO request' do
-      it 'should be "PTO"' do
-        pto_request = build(:pto_request, floating_holiday: false)
-
-        pto_request.pto_type.should == 'PTO'
-      end
-    end
-
-    context 'when floating holiday request' do
-      it 'should be "Floating Holiday"' do
-        pto_request = build(:pto_request, floating_holiday: true)
-
-        pto_request.pto_type.should == 'Floating Holiday'
-      end
-    end
-  end
 end

@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
 
   def show
     if current_user.has_profile?
+      @current_user = UserPresenter.new(current_user)
       render :show
     else
       redirect_to new_profile_url
