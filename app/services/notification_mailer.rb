@@ -20,10 +20,10 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def floating_holiday_hours(pto_requests)
-    pto_requests.select(&:floating_holiday).map(&:hours).reduce(:+)
+    pto_requests.select(&:floating_holiday?).map(&:hours).reduce(:+)
   end
 
   def deductible_pto_requests(pto_requests)
-    pto_requests.reject(&:floating_holiday).map(&:hours).reduce(:+)
+    pto_requests.reject(&:floating_holiday?).map(&:hours).reduce(:+)
   end
 end
