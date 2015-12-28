@@ -1,4 +1,4 @@
-- if @pto_requests.empty?
+- if @pto_request_collection.empty?
   I took no time off this month.
 
 - else
@@ -13,7 +13,7 @@
       %th(align="left") End
       %th(align="left") Hours
       %th(align="left") Type
-    - @pto_requests.each do |pto_request|
+    - @pto_request_collection.pto_requests.each do |pto_request|
       %tr
         %td
           = pto_request.start_date.to_s(:concise)
@@ -25,13 +25,13 @@
           = pto_request.pto_type
   %br
 
-- if @pto_requests.present?
-  Total PTO: #{format('%.2f', @total_hours)} hours
+- if !@pto_request_collection.empty?
+  Total PTO: #{format('%.2f', @pto_request_collection.total_pto_hours)} hours
 
 %br
 
-- if @floating_holiday_hours.present?
-  I took #{format('%.2f', @floating_holiday_hours)} hours of floating holiday this month.
+- if @pto_request_collection.any_floating_holiday_hours?
+  I took #{format('%.2f', @pto_request_collection.total_floating_holiday_hours)} hours of floating holiday this month.
 
 %br
 %br
