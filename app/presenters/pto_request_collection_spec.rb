@@ -14,6 +14,21 @@ describe PtoRequestCollection do
     it 'should return presented pto_requests' do
       expect(described_class.new(pto_requests).pto_requests.first).to be_an_instance_of PtoRequestPresenter
     end
+
+    it 'should order pto_requests by start_date' do
+      user = build(:user)
+      pto_requests = [
+          middle_pto_request = create(:pto_request, user: user, start_date: '15-Mar-2015', end_date: '31-Mar-2015'),
+          earliest_pto_request = create(:pto_request, user: user, start_date: '01-Mar-2015', end_date: '31-Mar-2015'),
+          latest_pto_request = create(:pto_request, user: user, start_date: '31-Mar-2015', end_date: '31-Mar-2015'),
+      ]
+
+      results = described_class.new(pto_requests).pto_requests
+
+      expect(results.first.start_date).to eq earliest_pto_request.start_date
+      expect(results.second.start_date).to eq middle_pto_request.start_date
+      expect(results.last.start_date).to eq latest_pto_request.start_date
+    end
   end
 
   describe '#empty?' do

@@ -5,9 +5,7 @@ class UserPresenter < SimpleDelegator
   end
 
   def pto_requests
-    user.pto_requests.map do |pto_request|
-      PtoRequestPresenter.new(pto_request)
-    end
+    PtoRequestCollection.new(user.pto_requests).pto_requests
   end
 
   private
