@@ -12,6 +12,7 @@ describe CreatePtoRequest do
           start_date: '01-Mar-2014',
           end_date: '02-Mar-2014',
           hours: '16',
+          floating_holiday: true,
         }
       end
 
@@ -34,6 +35,7 @@ describe CreatePtoRequest do
         expect(pto_request.start_date).to eq DateTime.parse('01-Mar-2014')
         expect(pto_request.end_date).to eq DateTime.parse('02-Mar-2014')
         expect(pto_request.hours).to eq 16
+        expect(pto_request.floating_holiday).to eq true
       end
 
       it 'should assign the PtoRequest to the User' do

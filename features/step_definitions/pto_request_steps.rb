@@ -49,6 +49,7 @@ Then(/^I should see the PTO request in my list$/) do
   expect(pto_request.end_date).to eq DateTime.parse('01-Mar-2014')
   expect(pto_request.hours).to eq 8
   expect(pto_request.status).to eq 'Completed'
+  expect(pto_request.pto_type).to eq 'PTO'
 end
 
 Then(/^I should not see that PTO request in my list$/) do

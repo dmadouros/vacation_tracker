@@ -61,6 +61,7 @@
       %th End
       %th Hours
       %th Status
+      %th Type
       %th &nbsp;
     - if current_user.pto_requests.empty?
       %tr
@@ -76,6 +77,8 @@
           = pto_request.hours
         %td
           = pto_request.status
+        %td
+          = pto_request.pto_type
         %td
           %ul.button-group.radius
             %li

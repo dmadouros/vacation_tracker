@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
   end
 
   def pto_hours_requested
-    pto_requests.sum(:hours)
+    pto_requests.
+        where.not(floating_holiday: true).
+        sum(:hours)
   end
 
   private

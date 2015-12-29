@@ -70,6 +70,7 @@ RSpec.describe User, :type => :model do
     before do
       create(:pto_request, hours: 8, user: subject)
       create(:pto_request, hours: 16, user: subject)
+      create(:pto_request, hours: 16, user: subject, floating_holiday: true)
     end
 
     it 'should be the sum of the hours of all pto requests' do

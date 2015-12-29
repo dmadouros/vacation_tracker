@@ -16,6 +16,10 @@ class CreatePtoRequestPage < PageObject
     driver.fill_in 'Hours', with: hours
   end
 
+  def select_floating_holiday
+    driver.check 'Floating Holiday'
+  end
+
   def create_pto_request
     driver.click_on 'Create'
   end
