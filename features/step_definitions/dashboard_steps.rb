@@ -5,6 +5,7 @@ Given(/^I have added several PTO requests$/) do
 end
 
 When(/^I visit my dashboard$/) do
+  Timecop.freeze('3-Mar-2015')
   application.dashboard_page.open
 end
 
