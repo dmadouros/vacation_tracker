@@ -5,6 +5,19 @@ RSpec.describe User, :type => :model do
   let(:profile) { build(:profile) }
   subject { create(:user, profile: profile) }
 
+  describe 'validations' do
+    it 'should only allow [asc|desc] as values for pto_request_sort_direction' do
+      subject.pto_request_sort_direction = 'asc'
+      expect(subject).to be_valid
+
+      subject.pto_request_sort_direction = 'desc'
+      expect(subject).to be_valid
+
+      subject.pto_request_sort_direction = 'invalid'
+      expect(subject).to_not be_valid
+    end
+  end
+
   describe '#has_profile?' do
     it 'should be true when the user has a profile' do
       expect(subject).to have_profile

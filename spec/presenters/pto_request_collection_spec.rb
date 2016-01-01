@@ -4,9 +4,9 @@ describe PtoRequestCollection do
   let(:user) { build(:user) }
   let(:pto_requests) do
     [
-        build(:pto_request, user: user, hours: 8),
-        build(:pto_request, user: user, hours: 10, floating_holiday: true),
-        build(:pto_request, user: user, hours: 3),
+      build(:pto_request, user: user, hours: 8),
+      build(:pto_request, user: user, hours: 10, floating_holiday: true),
+      build(:pto_request, user: user, hours: 3),
     ]
   end
 
@@ -15,19 +15,35 @@ describe PtoRequestCollection do
       expect(described_class.new(pto_requests, user).pto_requests.first).to be_an_instance_of PtoRequestPresenter
     end
 
-    it 'should order pto_requests by start_date' do
-      user = build(:user)
-      pto_requests = [
-          middle_pto_request = create(:pto_request, user: user, start_date: '15-Mar-2015', end_date: '31-Mar-2015'),
-          earliest_pto_request = create(:pto_request, user: user, start_date: '01-Mar-2015', end_date: '31-Mar-2015'),
-          latest_pto_request = create(:pto_request, user: user, start_date: '31-Mar-2015', end_date: '31-Mar-2015'),
-      ]
+    describe 'sorting' do
+      let(:middle_pto_request) { create(:pto_request, user: user, start_date: '15-Mar-2015', end_date: '31-Mar-2015') }
+      let(:earliest_pto_request) { create(:pto_request, user: user, start_date: '01-Mar-2015', end_date: '31-Mar-2015') }
+      let(:latest_pto_request) { create(:pto_request, user: user, start_date: '31-Mar-2015', end_date: '31-Mar-2015') }
+      let(:pto_requests) { [middle_pto_request, earliest_pto_request, latest_pto_request,] }
 
-      results = described_class.new(pto_requests, user).pto_requests
+      context 'when user sort direction is ascending' do
+        let(:user) { build(:user, pto_request_sort_direction: 'asc') }
 
-      expect(results.first.start_date).to eq earliest_pto_request.start_date
-      expect(results.second.start_date).to eq middle_pto_request.start_date
-      expect(results.last.start_date).to eq latest_pto_request.start_date
+        it 'should order pto_requests by start_date ascending' do
+          results = described_class.new(pto_requests, user).pto_requests
+
+          expect(results.first.start_date).to eq earliest_pto_request.start_date
+          expect(results.second.start_date).to eq middle_pto_request.start_date
+          expect(results.last.start_date).to eq latest_pto_request.start_date
+        end
+      end
+
+      context 'when user sort direction is descending' do
+        let(:user) { build(:user, pto_request_sort_direction: 'desc') }
+
+        it 'should order pto_requests by start_date descending' do
+          results = described_class.new(pto_requests, user).pto_requests
+
+          expect(results.first.start_date).to eq latest_pto_request.start_date
+          expect(results.second.start_date).to eq middle_pto_request.start_date
+          expect(results.last.start_date).to eq earliest_pto_request.start_date
+        end
+      end
     end
   end
 

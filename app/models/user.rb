@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :pto_requests
   delegate :hired_on, :pto_hours_used, to: :profile
   validates_associated :profile
+  validates :pto_request_sort_direction, inclusion: { in: ['asc', 'desc'] }
 
   scope :with_profile, -> { where.not(profile_id: nil) }
 
