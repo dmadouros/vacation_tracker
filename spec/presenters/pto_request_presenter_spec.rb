@@ -6,7 +6,7 @@ describe PtoRequestPresenter do
       it 'should be "PTO"' do
         pto_request = build(:pto_request, floating_holiday: false)
 
-        described_class.new(pto_request).pto_type.should == 'PTO'
+        expect(described_class.new(pto_request).pto_type).to eq 'PTO'
       end
     end
 
@@ -14,7 +14,7 @@ describe PtoRequestPresenter do
       it 'should be "Floating Holiday"' do
         pto_request = build(:pto_request, floating_holiday: true)
 
-        described_class.new(pto_request).pto_type.should == 'Floating Holiday'
+        expect(described_class.new(pto_request).pto_type).to eq 'Floating Holiday'
       end
     end
   end
