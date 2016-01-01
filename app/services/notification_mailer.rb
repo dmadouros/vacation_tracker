@@ -8,6 +8,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   private
+  private
 
   def subject_line_for(report_date)
     "PTO Report for #{report_date.strftime('%B %Y')}"
