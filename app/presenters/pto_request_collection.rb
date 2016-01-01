@@ -2,7 +2,7 @@ class PtoRequestCollection
 
   attr_reader :pto_requests
 
-  def initialize(pto_requests)
+  def initialize(pto_requests, user)
     @pto_requests = pto_requests.sort_by(&:start_date).map do |pto_request|
       PtoRequestPresenter.new(pto_request)
     end

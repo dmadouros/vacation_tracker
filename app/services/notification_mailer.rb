@@ -1,6 +1,6 @@
 class NotificationMailer < ActionMailer::Base
   def monthly_vacation_status(user, pto_requests, report_date)
-    @pto_request_collection = PtoRequestCollection.new(pto_requests)
+    @pto_request_collection = PtoRequestCollection.new(pto_requests, user)
     @report_date = report_date
     @user = user
 

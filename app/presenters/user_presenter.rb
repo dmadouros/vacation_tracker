@@ -5,7 +5,7 @@ class UserPresenter < SimpleDelegator
   end
 
   def pto_requests
-    PtoRequestCollection.new(user.pto_requests).pto_requests
+    PtoRequestCollection.new(user.pto_requests, user).pto_requests
   end
 
   private
