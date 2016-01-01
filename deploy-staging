@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git push vacationtracker-staging master && heroku run --app vacationtracker-staging rake db:migrate
