@@ -20,3 +20,5 @@
 
 # Ignore environment file
 /.env
+
+/.DS_Store
