@@ -10,12 +10,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require tilt-jade/runtime
+//= require jquery-2.2.0.min
 //= require jquery_ujs
 //= require jquery-ui.min
+//= require underscore-1.8.3.min
+//= require backbone-1.2.3.min
+//= require backbone.marionette-2.4.4.min
+//= require spin-1.3
+//= require spin.jquery
 //= require foundation
-//= require turbolinks
-//= require_tree .
+//= require ./vacation_tracker/manifest
+//= require_self
 
 $(function(){
   $(document).foundation();

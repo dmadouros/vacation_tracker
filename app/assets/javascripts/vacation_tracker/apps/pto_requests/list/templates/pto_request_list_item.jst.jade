@@ -1,0 +1,11 @@
+td #{start_date}
+td #{end_date}
+td #{hours}
+td #{status}
+td #{pto_type}
+td
+  ul.button-group.radius
+    li
+      a.button.tiny.secondary(href=edit_link) Edit
+    li
+      a.button.tiny.alert(href=delete_link, "data-method"="delete", rel="nofollow") Delete
