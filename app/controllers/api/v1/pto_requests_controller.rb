@@ -5,7 +5,13 @@ module API
       before_action :restrict_access
 
       def index
-        render json: current_user.pto_requests.map(&method(:present_pto_request))
+        pto_requests = current_user.pto_requests.sort do |a, b|
+          result = a.start_date <=> b.start_date
+          result = result * -1 if current_user.pto_request_sort_direction == 'desc'
+          result
+        end
+
+        render json: pto_requests.map(&method(:present_pto_request))
       end
 
       private
