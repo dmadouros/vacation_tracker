@@ -1,7 +1,7 @@
 module API
   module V1
     class PtoRequestsController < ApplicationController
-      acts_as_token_authentication_handler_for User, fallback_to_devise: false
+      acts_as_token_authentication_handler_for User, fallback_to_devise: true
       before_action :restrict_access
 
       def index
