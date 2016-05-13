@@ -25,6 +25,14 @@
   font-weight: bold;
 }
 
+.table tbody tr.warning > td {
+  background-color: #fcf8e3;
+}
+
+.table-hover tbody tr.warning:hover > td {
+  background-color: #faf2cc;
+}
+
 /*
   For Devise
 */

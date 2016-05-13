@@ -9,6 +9,7 @@ VacationTracker.module("PtoRequestsApp.List", function(List, VacationTracker, Ba
   List.PtoRequest = Marionette.ItemView.extend({
     template: JST["vacation_tracker/apps/pto_requests/list/templates/pto_request_list_item"],
     tagName: "tr",
+    className: ".pto_request",
 
     events: {
       "click": "highlightName",
