@@ -36,6 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'unicorn'
 gem 'haml'
+gem 'tilt-jade'
 gem 'jc-validates_timeliness'
 gem 'interactor-rails', '~> 2.0'
 gem 'simple_token_authentication', '~> 1.0'
