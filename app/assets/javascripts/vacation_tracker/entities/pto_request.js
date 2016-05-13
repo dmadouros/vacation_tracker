@@ -14,7 +14,6 @@ VacationTracker.module("Entities", function(Entities, VacationTracker, Backbone,
   Entities.PtoRequestCollection = Backbone.Collection.extend({
     url: "api/v1/pto_requests",
     model: Entities.PtoRequest,
-    comparator: "start_date",
   });
 
   var API = {
