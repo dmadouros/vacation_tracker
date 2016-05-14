@@ -12,13 +12,26 @@ VacationTracker.module("PtoRequestsApp.List", function(List, VacationTracker, Ba
     className: ".pto_request",
 
     events: {
-      "click": "highlightName",
-    }
+      "click": "highlightName"
+    },
+
+    behaviors: {
+      Confirmable: {
+        event: "ptoRequest:delete"
+      }
+    },
   });
   _.extend(List.PtoRequest.prototype, {
     highlightName: function() {
       this.$el.toggleClass("warning");
-    }
+    },
+
+    remove: function() {
+      var self = this;
+      this.$el.fadeOut(function() {
+        Marionette.ItemView.prototype.remove.call(self);
+      });
+    },
   });
 
   var NoPtoRequestsView = Marionette.ItemView.extend({
@@ -35,21 +48,21 @@ VacationTracker.module("PtoRequestsApp.List", function(List, VacationTracker, Ba
     childView: List.PtoRequest,
     childViewContainer: "tbody",
 
-    // initialize: function() {
-    //   this.listenTo(this.collection, "reset", function() {
-    //     this.$(this.childViewContainer).html('');
-    //
-    //     this.attachHtml = function(collectionView, childView, index) {
-    //       collectionView.$el.append(childView.el);
-    //     }
-    //   });
-    // }
+    initialize: function() {
+      this.listenTo(this.collection, "reset", function() {
+        this.$(this.childViewContainer).html('');
+
+        this.attachHtml = function(collectionView, childView, index) {
+          collectionView.$el.append(childView.el);
+        }
+      });
+    }
   });
-  // _.extend(List.PtoRequests.prototype, {
-  //   onRenderCollection: function() {
-  //     this.attachHtml = function(collectionView, childView, index) {
-  //       collectionView.$el.prepend(childView.el);
-  //     }
-  //   }
-  // });
+  _.extend(List.PtoRequests.prototype, {
+    onRenderCollection: function() {
+      this.attachHtml = function(collectionView, childView, index) {
+        collectionView.$el.prepend(childView.el);
+      }
+    }
+  });
 });

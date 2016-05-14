@@ -14,6 +14,12 @@ module API
         render json: pto_requests.map(&method(:present_pto_request))
       end
 
+      def destroy
+        PtoRequest.find(params[:id]).destroy
+
+        head :no_content
+      end
+
       private
 
       def restrict_access

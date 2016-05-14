@@ -18,6 +18,11 @@ VacationTracker.module("PtoRequestsApp.List", function(List, VacationTracker, Ba
           ptoRequestsListLayout.ptoRequestsRegion.show(ptoRequestsListView);
         });
 
+        self.listenTo(ptoRequestsListView, "childview:ptoRequest:delete", function(childView, args) {
+          var model = args.model;
+          model.destroy();
+        });
+
         VacationTracker.regions.main.show(ptoRequestsListLayout);
       }).fail(function() {
         alert("An unprocessed error happened. Please try again!");
