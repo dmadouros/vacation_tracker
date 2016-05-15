@@ -20,7 +20,11 @@ VacationTracker.module("PtoRequestsApp.List", function(List, VacationTracker, Ba
 
         self.listenTo(ptoRequestsListView, "childview:ptoRequest:delete", function(childView, args) {
           var model = args.model;
-          model.destroy();
+          var destroyingPtoRequest = model.destroy();
+
+          $.when(destroyingPtoRequest).done(function() {
+            VacationTracker.trigger("ptoSummary:show");
+          });
         });
 
         VacationTracker.regions.main.show(ptoRequestsListLayout);
