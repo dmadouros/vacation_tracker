@@ -7,15 +7,11 @@ VacationTracker.getCurrentRoute = function() {
 VacationTracker.on("before:start", function(options) {
   options || (options = {});
 
-  VacationTracker.i18n = {
-    acceptedLanguages: options.acceptedLanguages || [],
-    currentLanguage: "en"
-  };
-
   var RegionContainer = Marionette.LayoutView.extend({
     el: "#app-container",
     regions: {
       header: "#header-region",
+      ptoSummary: "#pto-summary-region",
       main: "#main-region",
     }
   });
@@ -28,6 +24,7 @@ VacationTracker.on("start", function(options) {
     Backbone.history.start();
 
     if (this.getCurrentRoute() === "") {
+      VacationTracker.trigger("ptoSummary:show");
       VacationTracker.trigger("ptoRequests:list");
     }
   }

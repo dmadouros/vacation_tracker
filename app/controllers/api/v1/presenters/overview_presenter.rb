@@ -14,7 +14,8 @@ module API
             pto_hours_used: format('%.2f', user.pto_hours_used),
             pto_hours_accrued: format('%.2f', user.pto_hours_accrued),
             pto_hours_available: format('%.2f', user.pto_hours_available),
-            as_of: DateTime.current.to_s(:concise)
+            as_of: DateTime.current.to_s(:concise),
+            end_of_year: DateTime.current.year
           }
         end
 

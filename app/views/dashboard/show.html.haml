@@ -1,61 +1,46 @@
-.row
-  %h1 My Dashboard
-  %hr
+#app-container
+  .row
+    %h1 My Dashboard
+    %hr
 
-.row
-  %h2
-    About Me
-    %small
-      = link_to '(Edit)', edit_profile_path(current_user.profile)
-.row
-  .large-12.columns.employee-header
-    .row
-      .large-2.columns
-        %span.employee-header-label
-          Email:
-      .large-2.columns.end
-        = current_user.email
-    .row
-      .large-2.columns
-        %span.employee-header-label
-          Hire Date:
-      .large-2.columns
-        %span.hired_on
-          = current_user.hired_on.to_s(:concise)
-      .large-offset-4.large-2.columns
-        %span.employee-header-label
-          PTO Used:
-      .large-2.columns.end.text-right
-        %span.pto_hours_used
-          = format('%.2f', current_user.pto_hours_used)
-.row
-  %h2
-    PTO Summary
-    %small (as of #{DateTime.current.to_s(:concise)})
+  .row
+    %h2
+      About Me
+      %small
+        = link_to '(Edit)', edit_profile_path(current_user.profile)
+  .row
+    .large-12.columns.employee-header
+      .row
+        .large-2.columns
+          %span.employee-header-label
+            Email:
+        .large-2.columns.end
+          = current_user.email
+      .row
+        .large-2.columns
+          %span.employee-header-label
+            Hire Date:
+        .large-2.columns
+          %span.hired_on
+            = current_user.hired_on.to_s(:concise)
+        .large-offset-4.large-2.columns
+          %span.employee-header-label
+            PTO Used:
+        .large-2.columns.end.text-right
+          %span.pto_hours_used
+            = format('%.2f', current_user.pto_hours_used)
+  .row
+    %h2
+      PTO Summary
+      %small (as of #{DateTime.current.to_s(:concise)})
 
-.row
-  .large-12.columns.employee-header
-    .row
-      .large-9.columns
-        %span.employee-header-label
-          Accrued PTO Hours:
-      .large-3.columns.text-right
-        %span.pto_hours_accrued
-          = format('%.2f', current_user.pto_hours_accrued)
-    .row
-      .large-9.columns
-        %span.employee-header-label
-          Available PTO Hours (by end of #{DateTime.current.year}):
-      .large-3.columns.text-right
-        %span.pto_hours_available
-          = format('%.2f', current_user.pto_hours_available)
+  #pto-summary-region
 
-.row
-  %h2 PTO Requests
-.row
-  = link_to 'Create PTO Request', new_pto_request_path(current_user), {class: 'button tiny radius'}
-.row
-  #app-container
+  .row
+    %h2 PTO Requests
+  .row
+    = link_to 'Create PTO Request', new_pto_request_path(current_user), {class: 'button tiny radius'}
+  .row
     #main-region
 
 :javascript
