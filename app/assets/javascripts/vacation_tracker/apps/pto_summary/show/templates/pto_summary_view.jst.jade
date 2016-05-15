@@ -1,16 +1,15 @@
-.row
-  .large-12.columns.employee-header
-    .row
-      .large-9.columns
-        span.employee-header-label
-          | Accrued PTO Hours:
-      .large-3.columns.text-right
-        span.pto_hours_accrued
-          = pto_hours_accrued
-    .row
-      .large-9.columns
-        span.employee-header-label
-          | Available PTO Hours (by end of #{end_of_year}):
-      .large-3.columns.text-right
-        span.pto_hours_available
-          = pto_hours_available
+.large-12.columns.employee-header
+  .row
+    .large-9.columns
+      span.employee-header-label
+        | Accrued PTO Hours:
+    .large-3.columns.text-right
+      span.pto_hours_accrued
+        = pto_hours_accrued
+  .row
+    .large-9.columns
+      span.employee-header-label
+        | Available PTO Hours (by end of #{end_of_year}):
+    .large-3.columns.text-right
+      span.pto_hours_available
+        = pto_hours_available
