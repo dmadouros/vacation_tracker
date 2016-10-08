@@ -22,6 +22,8 @@ group :test do
   gem 'timecop', '~> 0.7.0'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
+  gem 'poltergeist'
+  gem 'capybara-webkit'
 end
 
 group :development, :test do

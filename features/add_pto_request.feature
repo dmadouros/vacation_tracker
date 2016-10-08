@@ -1,3 +1,4 @@
+@javascript
 Feature: Add PTO Request
 
   So that I can have a record of past, current, and future days,

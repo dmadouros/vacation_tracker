@@ -1,3 +1,4 @@
+@javascript
 Feature: Edit PTO Request
 
   So that I can have an accurate record of my PTO,

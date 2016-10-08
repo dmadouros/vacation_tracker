@@ -20,6 +20,7 @@ class DashboardPage < PageObject
   end
 
   def pto_requests
+    sleep 1 # hacks :(
     pto_request_rows = driver.all('.pto_request')
     pto_request_rows.map do |pto_request_row|
       build_pto_request(pto_request_row)

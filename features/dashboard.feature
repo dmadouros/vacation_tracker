@@ -1,3 +1,4 @@
+@javascript
 Feature: View My Dashboard
 
   Scenario: I am a first time user

@@ -14,6 +14,7 @@ module API
           allow(pto_request).to receive(:end_date).and_return(DateTime.parse('15-Mar-2014'))
           allow(pto_request).to receive(:hours).and_return(28)
           allow(pto_request).to receive(:status).and_return('Pending')
+          allow(pto_request).to receive(:floating_holiday?).and_return('Floating Holiday')
         end
 
         describe '#call' do
