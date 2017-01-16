@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pto_requests, only: [:index, :destroy]
       post 'auth/sign_in' => 'sessions#create'
+      post 'auth/sign_out' => 'sessions#destroy'
       get 'overview' => 'overview#show'
     end
   end
