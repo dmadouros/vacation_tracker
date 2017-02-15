@@ -13,7 +13,7 @@ class NotificationService
     end
   end
 
-  def send_monthly_report_to(user_id)
+  def send_monthly_report_to_user(user_id)
     user = User.with_profile.find(user_id)
 
     NotificationMailer.monthly_vacation_status(
