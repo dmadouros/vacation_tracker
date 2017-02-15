@@ -10,6 +10,6 @@ namespace :notification do
   task :monthly_report_to_user, [:user_id, :report_date] => :environment do |_task, args|
     report_date = args.report_date ? Date.parse(args.report_date) : Date.current.last_month
 
-    NotificationService.new(report_date.beginning_of_month).send_monthly_report_to_user(user_id)
+    NotificationService.new(report_date.beginning_of_month).send_monthly_report_to_user(args.user_id)
   end
 end
