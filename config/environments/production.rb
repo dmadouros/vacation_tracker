@@ -62,12 +62,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'vacationtracker.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'smtp.sendgrid.net',
+    domain: ENV['DOMAIN'],
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
     port: 587,
-    domain: ENV['GMAIL_DOMAIN'],
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
-    authentication: 'plain',
+    authentication: :plain,
     enable_starttls_auto: true
   }
 
