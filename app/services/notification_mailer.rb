@@ -4,7 +4,7 @@ class NotificationMailer < ActionMailer::Base
     @report_date = report_date
     @user = user
 
-    mail(to: user.email, subject: subject_line_for(report_date), from: 'kbarnes@athn.org')
+    mail(to: user.email, subject: subject_line_for(report_date), from: 'no-reply@vacationtracker.herokuapp.com')
   end
 
   private
